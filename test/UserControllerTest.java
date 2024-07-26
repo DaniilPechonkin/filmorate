@@ -38,6 +38,9 @@ class UserControllerTest {
     void addUser_InvalidUser_ReturnsBadRequest() {
         User user = new User();
         user.setLogin("");
+        user.setEmail("user@example.com");
+        user.setName("example");
+        user.setBirthday(LocalDateTime.now());
 
         ResponseEntity<User> response = userController.addUser(user);
 
@@ -50,11 +53,15 @@ class UserControllerTest {
         User user = new User();
         user.setLogin("firstUser");
         user.setEmail("user1@example.com");
+        user.setName("example1");
+        user.setBirthday(LocalDateTime.now());
         userController.addUser(user);
 
         User updatedUser = new User();
         updatedUser.setLogin("updatedUser");
         updatedUser.setEmail("updated@example.com");
+        updatedUser.setName("example2");
+        updatedUser.setBirthday(LocalDateTime.now());
 
         ResponseEntity<User> response = userController.updateUser(0, updatedUser);
 
@@ -67,6 +74,9 @@ class UserControllerTest {
     void updateUser_NonExistentUser_ReturnsNotFound() {
         User updatedUser = new User();
         updatedUser.setLogin("updatedUser");
+        updatedUser.setEmail("user@example.com");
+        updatedUser.setName("example");
+        updatedUser.setBirthday(LocalDateTime.now());
 
         ResponseEntity<User> response = userController.updateUser(0, updatedUser);
 
@@ -78,10 +88,16 @@ class UserControllerTest {
     void getAllUsers_ReturnsListOfUsers() {
         User user1 = new User();
         user1.setLogin("user1");
+        user1.setEmail("user1@example.com");
+        user1.setName("example1");
+        user1.setBirthday(LocalDateTime.now());
         userController.addUser(user1);
 
         User user2 = new User();
         user2.setLogin("user2");
+        user2.setEmail("user2@example.com");
+        user2.setName("example2");
+        user2.setBirthday(LocalDateTime.now());
         userController.addUser(user2);
 
         ResponseEntity<List<User>> response = userController.getAllUsers();

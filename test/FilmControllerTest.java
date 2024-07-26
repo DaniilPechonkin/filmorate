@@ -51,10 +51,16 @@ public class FilmControllerTest {
     void updateFilm_ValidFilm_ReturnsOkResponse() {
         Film film = new Film();
         film.setName("First Film");
+        film.setDuration(Duration.ofHours(1));
+        film.setDescription("film");
+        film.setReleaseDate(LocalDateTime.now());
         filmController.addFilm(film);
 
         Film updatedFilm = new Film();
         updatedFilm.setName("Updated Film");
+        updatedFilm.setDuration(Duration.ofHours(1));
+        updatedFilm.setDescription("film");
+        updatedFilm.setReleaseDate(LocalDateTime.now());
 
         ResponseEntity<Film> response = filmController.updateFilm(0, updatedFilm);
 
@@ -67,6 +73,9 @@ public class FilmControllerTest {
     void updateFilm_NonExistentFilm_ReturnsNotFound() {
         Film updatedFilm = new Film();
         updatedFilm.setName("Updated Film");
+        updatedFilm.setDuration(Duration.ofHours(1));
+        updatedFilm.setDescription("film");
+        updatedFilm.setReleaseDate(LocalDateTime.now());
 
         ResponseEntity<Film> response = filmController.updateFilm(0, updatedFilm);
 
@@ -78,10 +87,16 @@ public class FilmControllerTest {
     void getAllFilms_ReturnsListOfFilms() {
         Film film1 = new Film();
         film1.setName("Film 1");
+        film1.setDuration(Duration.ofHours(1));
+        film1.setDescription("film");
+        film1.setReleaseDate(LocalDateTime.now());
         filmController.addFilm(film1);
 
         Film film2 = new Film();
         film2.setName("Film 2");
+        film2.setDuration(Duration.ofHours(1));
+        film2.setDescription("film");
+        film2.setReleaseDate(LocalDateTime.now());
         filmController.addFilm(film2);
 
         ResponseEntity<List<Film>> response = filmController.getAllFilms();
